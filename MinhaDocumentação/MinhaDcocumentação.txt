@@ -1,5 +1,4 @@
-Documentação para auxiliar sobre o Php no meus projetos(ExerciciosPhp)
-
+Documentação para auxiliar sobre o Php no meus projetos
 
 
 Instalação:
@@ -11,9 +10,59 @@ Instalação:
     *Reniciar o Apache(sudo systemctl restart apache2),
     *Status o Apache(sudo systemctl status apache2),
     *local para os arquivos php(cd /var/www/html/),
+    *Mudar a pasta Raiz do Apache(cd etc/apache2/sites-enabled, sudo gedit 000-default.conf)
+    ou
+    xampp
     )
 
-ExerciciosPhp:
+Funções e instruções do Php:
+    -is_float() //verifica se o número é float
+    -is_string() //verifica se é string
+    -is_null() //verifica se é nulo
+    -$array=['nome' => 'Ruan Felipe', 'idade' => 21] //array associativo
+    -$$(
+        //criar uma variável de variável
+        $x ="nome";
+        echo "$x <br>"; //vai aparecer "nome"
+        $$x = "Ruan";
+        echo "$nome <br>"; //vai aparecer "Ruan"
+
+    )
+    -=&(
+        //variável por referência
+        $x = 2;
+        $y = & $x;
+        echo "$x <br> $y"; // vai aparecer "'2' na outra linha '2'"
+
+        $y = 45;
+        echo "$x <br> $y"; // vai aparecer "'45' na outra linha '45'"
+    )
+    -cast(
+        //força uma coversão de de tipo
+        $a= (int) "12";
+        //a string vira um número inteiro
+
+    )
+    -operador ternário(
+        condição ? se a condição for verdadeira : se a condição é falsa
+        echo 5>3?"vdd":"falso"; // vai aparecer "vdd"
+        echo 1>3?"vdd":"falso"; // vai aparecer "falso"
+    )
+    -foreach(
+        foreach($array as $item){
+            codigo
+        }
+    )
+    -include e require(
+        *include "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo"
+        *require "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo" e gera um erro fatal caso o "nome_do_arquivo" não exista
+        *include_once "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo" e não deixa que o arquivo seja adicionado mais de uma vez na página
+        *require_once "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo" e gera um erro fatal caso o "nome_do_arquivo" não exista e não deixa que o arquivo seja adicionado mais de uma vez na página
+
+    )
+
+
+
 
     
     

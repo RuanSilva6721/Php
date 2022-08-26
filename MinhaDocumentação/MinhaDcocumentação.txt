@@ -2,6 +2,19 @@ Documentação para auxiliar sobre o Php no meus projetos(ExerciciosPhp)
 
 
 
+Instalação:
+    -Windows(xampp)
+    -Linux(*Apache(
+    sudo apt update, sudo apt install apache2, sudo ufw app list, sudo ufw app info "Apache Full",sudo ufw allow in "Apache Full"),
+    *Mysql(sudo apt install mysql-server),
+    *php(sudo apt install php libapache2-mod-php php-mysql(conectar o php ao apachee mysql)),
+    *Reniciar o Apache(sudo systemctl restart apache2),
+    *Status o Apache(sudo systemctl status apache2),
+    *local para os arquivos php(cd /var/www/html/),
+    )
 
 ExerciciosPhp:
 
+    
+    
+    

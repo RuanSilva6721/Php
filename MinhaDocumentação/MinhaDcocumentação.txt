@@ -1,7 +1,13 @@
 Documentação para auxiliar sobre o Php no meus projetos
 
 
-Instalação:
+
+1-Instalação:
+2-Funções e instruções do Php:
+3-Php Web
+
+
+1-Instalação:
     -Windows(xampp)
     -Linux(*Apache(
     sudo apt update, sudo apt install apache2, sudo ufw app list, sudo ufw app info "Apache Full",sudo ufw allow in "Apache Full"),
@@ -15,51 +21,201 @@ Instalação:
     xampp
     )
 
-Funções e instruções do Php:
-    -is_float() //verifica se o número é float
-    -is_string() //verifica se é string
-    -is_null() //verifica se é nulo
-    -$array=['nome' => 'Ruan Felipe', 'idade' => 21] //array associativo
-    -$$(
-        //criar uma variável de variável
-        $x ="nome";
-        echo "$x <br>"; //vai aparecer "nome"
-        $$x = "Ruan";
-        echo "$nome <br>"; //vai aparecer "Ruan"
+2-Funções e instruções do Php:
+
+    operadores e funcões(
+                *is_float() //verifica se o número é float
+                *is_string() //verifica se é string
+                *is_null() //verifica se é nulo
+                $array=['nome' => 'Ruan Felipe', 'idade' => 21] //array associativo
+                *$$(
+                    //criar uma variável de variável
+                    $x ="nome";
+                    echo "$x <br>"; //vai aparecer "nome"
+                    $$x = "Ruan";
+                    echo "$nome <br>"; //vai aparecer "Ruan"
+
+                )
+                *=&(
+                    //variável por referência
+                    $x = 2;
+                    $y = & $x;
+                    echo "$x <br> $y"; // vai aparecer "'2' na outra linha '2'"
+
+                    $y = 45;
+                    echo "$x <br> $y"; // vai aparecer "'45' na outra linha '45'"
+                )
+                *cast(
+                    //força uma coversão de de tipo
+                    $a= (int) "12";
+                    //a string vira um número inteiro
+
+                )
+                *operador ternário(
+                    condição ? se a condição for verdadeira : se a condição é falsa
+                    echo 5>3?"vdd":"falso"; // vai aparecer "vdd"
+                    echo 1>3?"vdd":"falso"; // vai aparecer "falso"
+                )
+                *foreach(
+                    foreach($array as $item){
+                        codigo
+                    }
+                )
+                *include e require(
+                    *include "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo"
+                    *require "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo" e gera um erro fatal caso o "nome_do_arquivo" não exista
+                    *include_once "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo" e não deixa que o arquivo seja adicionado mais de uma vez na página
+                    *require_once "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo" e gera um erro fatal caso o "nome_do_arquivo" não exista e não deixa que o arquivo seja adicionado mais de uma vez na página
+
+                )
+    )
+    -String(
+                * valores de espace(
+                    //pular linha
+                    '/n'
+                    //tab
+                    '/t'
+                )
+                *Tamanho da Strings(
+                    *strlen(); //a função para ver o tamanho da String
+                    echo strlen(String) ;
+
+                    for ($i= 0 ; $i<strlen(String); $i++){
+                        codigo
+                    }
+                )
+                *Limpando os espaços em brando Strings(
+                    *trim() //limpa espaços em branco antes e depois da string
+                    *ltrim() //limpa espaços em branco da parte inicial da string
+                    *rtrim() //limpa espaços em branco da parte final da string
+                )
+                * Mudando o case das strings (
+                    *strtolower //todas as letras minúsculas
+                    *strtoupper //todas as letras minúsculas
+                    *ucfirst //primeira letra da string em maiúscula
+                    *ucwords //primeira letra de cada palavra em maiúscula
+                )
+                *removendo tgs do html(
+                    *strip_tags()
+                )
+                * regastando parte da string(
+                    *substr(string, parâmetro)
+
+                    $abc = substr("Ruan", 2)
+                    echo $abc; // vai aparecer "uan"
+                )
+                *inverter a string (
+                    *strrev()
+                )
+                *converter string para array e array para string(
+                    *explode(" ", string) //string para array
+                    *implode(", ", $array) //array para string
+                )
+                *decompor uma url(
+                    *parse_url()
+
+                    $url = "https://RuanFelipe.com";
+
+                    $arrayUrl = parse_url($url);
+                )
+    )
+    -array(
+                $array = [];
+                * $array[] = 5  // adiciona no último indice
+
+                *$array = range(1,10) //array com range '1'(começo do array), '10'(final do array)
+
+                *count($array) // para saber o tamanho do array
+
+                *$array = [
+                    [],
+                    []
+                ] //array multidimensional, para acessar é '$array[][]'
+
+                *array["Ruan", 21, "Desenvolvedor php", "1.92"];
+                list($nome, $idade, $ profissao, $altura) = $array //
+                desconstruindo o array, agora as 4 variáveis são variáveis independentes
+                $nome
+                echo $nome;  // vai paracer "Ruan"
+
+                *arry_slice(array, primeiro indice, número de itens)
+                $array_slice($array,1, 4); // vai criar outro array de 4 elementos
+
+                *array_splice(array, primeiro indice, quantidade de elementos) // remove elementos do array
+
+                *extract($array) // extraios valores do array e voloca em variavel do mesmo nome das chaves 
+
+                *compact($array) // as variaves vao ser transformadas em um array(é o oposto do extract())
+                $marca = "bmw";
+                $nome = "Ruan Felipe";
+                $idade =  21;
+
+                $array = compact("$marca", "$nome", "$idade"); // '$array' virou um array
+
+                *somar o array(
+                        $array =[1,2,,3,4,5,6,7,8,9];
+
+                        function soma($a, $b){
+                            return $a + $b;
+                        }
+                        //array_deduce(array, função);
+                        $resultado =  array_deduce($array, "soma");
+
+                        echo "$resultado"; // vai aparecer "45"
+
+                )
+                *buscar ser um itrm está ou não dentro array, vai retornar "true ou false"(
+                    //in_array("item", array)
+                )
+                *ordenção de array(
+                    sort($array) //de forma crescente
+                    rsort($array)// de forma decrescente
+
+                    asort($array) //de forma crescente pelos valores do array associativo
+                    ksort($array) //de forma crescente pelas chaves do array associativo
+
+                    arsort($array) //de forma decrescente pelos valores do array associativo
+                    krsort($array) //de forma decrescente pelas chaves do array associativo
+
+                )
+
+                *array_reverse(array)// inverte o array
+
+                *array_sum(array)// soma todos os itens do array e ignora as string
+
+                *array_merge($array1, $array2, $array3) // a união dos array
 
     )
-    -=&(
-        //variável por referência
-        $x = 2;
-        $y = & $x;
-        echo "$x <br> $y"; // vai aparecer "'2' na outra linha '2'"
 
-        $y = 45;
-        echo "$x <br> $y"; // vai aparecer "'45' na outra linha '45'"
-    )
-    -cast(
-        //força uma coversão de de tipo
-        $a= (int) "12";
-        //a string vira um número inteiro
+    -POO(
+        exetends //extenção de uma classe pai
+        Interface 
+
 
     )
-    -operador ternário(
-        condição ? se a condição for verdadeira : se a condição é falsa
-        echo 5>3?"vdd":"falso"; // vai aparecer "vdd"
-        echo 1>3?"vdd":"falso"; // vai aparecer "falso"
-    )
-    -foreach(
-        foreach($array as $item){
-            codigo
-        }
-    )
-    -include e require(
-        *include "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo"
-        *require "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo" e gera um erro fatal caso o "nome_do_arquivo" não exista
-        *include_once "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo" e não deixa que o arquivo seja adicionado mais de uma vez na página
-        *require_once "nome_do_arquivo"; //faz a include o arquivo "nome_do_arquivo" e gera um erro fatal caso o "nome_do_arquivo" não exista e não deixa que o arquivo seja adicionado mais de uma vez na página
 
-    )
+
+
+3-Php Web:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 

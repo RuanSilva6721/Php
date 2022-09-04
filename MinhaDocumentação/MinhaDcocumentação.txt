@@ -309,7 +309,92 @@ Documentação para auxiliar sobre o Php no meus projetos
                     )
 
 4-Php com banco de dados:
+         -mysqli(
+                    * Para conectar ao Mysql usamos a função 'mysql_connect' (parâmetros (host, usuário, senha e banco de dados))
+                    ex:
+                    
+                $host = "localhost";
+                $user = "root";
+                $pass = "";
+                $db = "medtec";
 
+                $conn = new mysqli($host, $user , $pass , $db)
+
+                    if($conn->connect_errno){
+                    echo "Erro no conexão! <br> ";
+                    echo "Erro: ". mysqli_connect_error();
+                }
+
+                $sql = "SELECT * FROM user";
+
+                $result = $conn->query($sql);
+
+                print_r($result);
+
+                    echo "<br>";
+
+                //$itens = $result->fetch_assoc();
+                $itens = $result->fetch_all();
+
+                print_r($itens);
+
+                //statments
+                $stmt = $conn->prepare("INSERT INTO tabela (campo1, campo2) VALUES (?, ?)");
+
+                $stmt->bind_param("ss", $nome, $descricao);
+
+                $stmt->execute(); 
+
+
+
+                $stmt = $conn->prepare("SELECT * FROM tabela WHERE  campo1 = ?");
+
+                $stmt->bind_param("ss", $nome,);
+
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+
+                $data = $result->fetch_all();
+
+                print_r($data);
+
+                )
+        -PDO(
+            obs: lembrar de habilitar no 'php.init'
+
+            ex:
+            $host = "localhost";
+            $db = "banco_Ruan";
+            $user = "root";
+            $pass = "";
+
+            $conn = new PDO("mysql:host=$host; dbname= $db, $user, $pass)
+
+
+            $stmt = $conn->prepare(" INSERT INTO tabela (campo1, campo2) VALUES (:nome, :descricao));
+
+            $stmt->bindParm(":nome", $nome);
+            $stmt->bindParam(":descricao", $descricao);
+
+            $stmt->execute();
+
+
+
+            $stmt = $conn->prepare("UPDATE tabela SET nome = :nome WHERE id = :id);
+
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":nome", $nome);
+
+            $stmt->execute();
+
+
+            $stmt->bindParam("SELECT * FROM tabela");
+            $stmt->execute();
+           /// $data = $stmt->fetch(PDO::FETCH_ASSOC); //buscar uma row 'PDO::FETCH_ASSOC' é para colocar em um array associativo
+           $data = $stmt->fetchAll(PDO::FETCH_ASSOC)
+
+        )
 
 
 

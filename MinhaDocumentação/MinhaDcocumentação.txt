@@ -5,6 +5,7 @@ Documentação para auxiliar sobre o Php no meus projetos
 1-Instalação:
 2-Funções e instruções do Php:
 3-Php Web
+4-Php com banco de dados
 
 
 1-Instalação:
@@ -198,7 +199,116 @@ Documentação para auxiliar sobre o Php no meus projetos
 
 3-Php Web:
 
+    -Métodos de HTTP(
+        *POST: Envio de dados ao servidor
+        *PUT: Atualização de dados
+        *DELETE: remoção de dados
+        *PATCH: Atualização de dado especifico
+        *GET: solicita a apresentaçãode um recurso(ex: visualização de uma página)
+    )
+    -Variaveis globais do php(
+        *$_ENV: variáveis de ambiente
+        *$_GET: parâmetros que foram enviados por request GET
+        *$_POST: Parâmetros que foram eviados por POST
+        *$_COOKIE: Valores de cookies
+        *$_SERVER: Informações sobre o servidor 
+        *$_FILES : Informações sobre os arquivos que vieram por upload
+    )
+    -$_SERVER(
+        *SERVER_SOFTWARE: Identificação do servidor
+        *SERVER_NAME: Hostname, DNS ou IP do servidor
+        *SERVER_PROTOCOL: Protocolo do servidor
+        *SERVER_PORT: Porta servidor
+        *QUERY_STRING: Argumentos após o ? da URL
 
+    )
+    -autoprocessameno de páginas(
+        EX:
+        if($SERVER['REQUEST_METHOD'] == 'POST'){
+                    código
+        }
+    )
+    - preencher formularios com dados do db(
+        ex:
+        <input type="text" value="<?php echo $query->nome; ?>">
+    )
+    - input com multivalores(
+                         <?php
+
+                        if(isset($_POST['ingredientes'])) {
+
+                            $ingredientes = $_POST['ingredientes'];
+
+                            print_r($ingredientes);
+
+                        }
+
+                        ?>
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Document</title>
+                        </head>
+                        <body>
+                        <form action="index.php" method="POST">
+                            <div>
+                            <input type="checkbox" name="ingredientes[]" value="Tomate"> Tomate
+                            </div>
+                            <div>
+                            <input type="checkbox" name="ingredientes[]" value="Abóbora"> Abóbora
+                            </div>
+                            <div>
+                            <input type="checkbox" name="ingredientes[]" value="Feijão"> Feijão
+                            </div>
+                            <div>
+                            <input type="checkbox" name="ingredientes[]" value="Alface"> Alface
+                            </div>
+                            <div>
+                            <input type="checkbox" name="ingredientes[]" value="Cebola"> Cebola
+                            </div>
+                            <div>
+                            <input type="submit" value="Enviar">
+                            </div>
+                        </form>
+                        </body>
+                        </html>
+    )
+    - Upload de arquivos(
+        formulario: multipart/form-data
+
+        ex:
+            if(isset($_FILES)) {
+
+                print_r($_FILES);
+
+            }
+            <form action="index.php" method="POST" enctype="multipart/form-data">
+                <div>
+                <input type="file" name="imagem"> 
+                </div>
+                <input type="submit" value="Enviar">
+            </form>
+
+    )
+    -Sessions e cookies(
+                //cookie
+                        setcookie("nome", "Matheus", time() + 3600);
+
+                if(isset($_COOKIE['nome'])) {
+
+                    $nome = $_COOKIE['nome'];
+
+                }
+                //Sessions
+                    session_start();
+
+                print_r($_SESSION);
+                    )
+
+4-Php com banco de dados:
 
 
 

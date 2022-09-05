@@ -395,6 +395,28 @@ Documentação para auxiliar sobre o Php no meus projetos
            $data = $stmt->fetchAll(PDO::FETCH_ASSOC)
 
         )
+        -Anotações(
+            	$sql = "select login from usuarios where flg=1 and login= ? ";
+
+		$stmt = query($sql);
+		mysqli_stmt_bind_param($stmt, 's', $params["login"]);
+		mysqli_stmt_execute($stmt) or die('A consulta falhou!<br/> ERRO: ' . mysqli_stmt_errno($stmt));
+		mysqli_stmt_bind_result($stmt, $login);
+		$retorno = array();
+		while (mysqli_stmt_fetch($stmt)) {
+		array_push(
+		$retorno,
+		array(
+			"LOGIN" => $login)
+		);
+		}
+
+		return $retorno;
+
+
+        //echo"<pre>"; var_dump($stmt);echo"</pre>";die();
+
+        )
 
 
 

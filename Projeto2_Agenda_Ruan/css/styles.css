@@ -56,9 +56,6 @@ body{
 .col-id{
     font-weight: bold;
 }
-
-
-
 footer {
     width: 100%;
     position: absolute;
@@ -67,4 +64,39 @@ footer {
     background-color: #007bff;
     color: #FFF;
     padding: 50px 0;
+  }
+
+  /* detalhes.php */
+  #view-contact-container{
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .bold{
+    font-weight: bold;
+  }
+
+  #back-link-container{
+    display: block;
+    width: 500px;
+    margin: 30px auto 0;
+  }
+
+  #back-link{
+    border: 1px solid #007bff;
+    color: #007bff;
+    border-radius: 4px;
+    padding: 5px;
+  }
+
+  #back-link:hover{
+    text-decoration: none;
+  }
+  /* CREATE */
+  #create-form{
+
+  }
+  #edit-form{
+    max-width: 500px;
+    margin: 0;
   }

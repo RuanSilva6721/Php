@@ -3,9 +3,9 @@ include_once "templates/header.php";
 ?>
     <div class="container">
         <?php
-         if(isset($printMsg) && $pringMsg != ''){
+         if(isset($printMsg) && $printMsg != ""){
         ?>
-        <p id="msg"><?=$pringMsg ?></p>
+        <p id="msg"><?=$printMsg ?></p>
         <?php }?>
         <h1 id="main-title">Minha Agenda</h1>
         <?php if(count($contacts) > 0):
@@ -24,12 +24,17 @@ include_once "templates/header.php";
                 <?php foreach($contacts as $contact){?>
                     <tr>
                         <td scope="row" class="col-id"><?= $contact['id']?></td>
-                        <td scope="row"><?= $contact['name']?></td>
+                        <td scope="row"><?= $contact['nome']?></td>
                         <td scope="row"><?= $contact['phone']?></td>
                         <td class="actions">
                         <a href="<?= $BASE_URL ?>detalhes.php?id=<?= $contact['id']?>"><i class="fas fa-eye check-icon"></i></a>
-                        <a href="#"><i class="fas fa-edit edit-icon"></i></a>
+                        <a href="<?= $BASE_URL ?>edit.php?id=<?= $contact['id']?>"><i class="fas fa-edit edit-icon"></i></a>
+                        <form class="delete-form" action="<?= $BASE_URL ?>/config/process.php" method="POST">
+                            <input type="hidden" name="type" value="delete">
+                            <input type="hidden" name="id" value="<?= $contact['id']?>">
                         <button type="submit" class="delete-btn"><i class="fas fa-times delete-icon"></i></button>
+                        </form>
+                        
                     </td>
                     </tr>
                 <?php }?>

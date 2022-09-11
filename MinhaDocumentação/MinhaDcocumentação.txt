@@ -416,8 +416,20 @@ Documentação para auxiliar sobre o Php no meus projetos
 
         //echo"<pre>"; var_dump($stmt);echo"</pre>";die();
 
+        )*classe anônima
+        *verificando classes(
+            *class_exists() //verifica se uma classe existe
+            *get_class_methods() //verifica os métodos de uma classe
+            *get_class_vars() //mapeamento das propriedades de uma classe
         )
-
+        *verificando objetos(
+            *class_object() //verifica se uma variavel é um objeto
+            *get_class() //verifica a classe de um objeto
+            *methods_exists() //verifica se um método existe em um objeto
+        )
+    )
+    -Datas(
+        *date('d/m/y'); //day/ month/ year
 
 
 

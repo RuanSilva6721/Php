@@ -3,9 +3,9 @@ include_once "config/url.php";
 include_once "config/process.php";
 
 //limpa a mesagem
-if(isset($_SESSION['msg'])){
-  $printMsg = $_SESSION['msg'];
-  $_SESSION['msg'] = '';
+if(isset($_SESSION["msg"])){
+  $printMsg = $_SESSION["msg"];
+  $_SESSION["msg"] = "";
 }
 ?>
 
@@ -28,7 +28,7 @@ if(isset($_SESSION['msg'])){
 <body>
 <script src="https://kit.fontawesome.com/8106cb0d7e.js" crossorigin="anonymous"></script> 
 
-  <head>
+  <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <a class="navbar-brand" href="<?= $BASE_URL ?>index.php">
         <img src="<?= $BASE_URL ?>img/logo.svg" alt="Agenda">
@@ -41,4 +41,4 @@ if(isset($_SESSION['msg'])){
       </div>
 
     </nav>
-  </head>
+  </header>

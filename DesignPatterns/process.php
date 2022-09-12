@@ -1,24 +1,20 @@
 <?php
 
-include_once "DAO.php";
-include_once "DAO/CarDAO.php";
+  include_once("DAO.php");
+  include_once("DAO/CarDAO.php");
 
-$carDAO = new CarDAO($conn);
-
-
+$carDao = new CarDAO($conn);
 
 $brand = $_POST["brand"];
 $km = $_POST["km"];
 $color = $_POST["color"];
 
-$newCar = new Car();
+  $newCar = new Car();
 
+  $newCar->setBrand($brand);
+  $newCar->setKm($km);
+  $newCar->setColor($color);
 
-$newCar->setBrand($brand);
-$newCar->setKm($km);
-$newCar->setColor($color);
+  $carDao->create($newCar);
 
-$carDAO->create($newCar);
-
-header("Location: index.php");
-?>
+  header("Location: index.php");

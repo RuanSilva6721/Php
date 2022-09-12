@@ -11,17 +11,45 @@ class CarDAO implements CarDAOInterface{
 	}
     
     public function findAll(){
+        $array =[];
+
+        $stmt = $this->conn->query("SELECT * FROM dao");
+        $data = $stmt->fetchAll();
+
+        foreach ($data as $dat){
+            $car = new Car();
+
+            $car->setId($dat["id"]);
+            $car->setBrand($dat["marca"]);
+            $car->setKm($dat["km"]);
+            $car->setColor($dat["cor"]);
+
+            $array[] = $car;
+
+        }
+        return $array;
 
     } 
     public function create(Car $car){
+       
+        $brand = $car->getBrand();
+        $km = $car->getKm();
+        $color =$car->getColor();
+
+        $stmt = $this->conn->prepare("INSERT INTO dao (marca, km , cor) VALUES (:brand, :km, :color)");
+
+        $stmt->bindParam(":brand", $brand);
+        $stmt->bindParam(":km", $km);
+        $stmt->bindParam(":color", $color);
+
+        try{
+            $stmt->execute();
+            
         
-        $stmt = $this->conn->prepare("INSERT INTO dao (brand,km,color) VALUES (:brad, :km, :color)");
-
-        $stmt->bindParam(":brand", $car->getBrand());
-        $stmt->bindParam(":km", $car->getKm());
-        $stmt->bindParam(":color", $car->getColor());
-
-        $stmt->execute();
+        }catch(PDOException $e){
+            $error = $e->getMessage();
+            echo "Erro: $error";
+        }
 
 
     }

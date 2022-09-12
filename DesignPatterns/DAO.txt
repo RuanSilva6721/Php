@@ -1,0 +1,7 @@
+DAO = Data Acess Object
+
+-abordagens orientada a objetos;
+-separa a regra de negócio da interação com o banco de dados
+-há uma classe DAO que será responsável pelas interações com o DB
+-Possibilita também a troca de bancos ou modelos de conexão facilmente
+

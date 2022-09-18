@@ -109,6 +109,12 @@
     color: #F5C518;
     border-color: #F5C518;
   }
+  #btn{
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: #F5C518;
+  }
 /* footer */
 
 #footer{

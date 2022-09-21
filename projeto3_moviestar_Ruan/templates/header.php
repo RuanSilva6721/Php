@@ -1,6 +1,15 @@
 <?php
 require_once "global.php";
 require_once "db.php";
+require_once "models/Message.php";
+
+$message = new Message($BASE_URL);
+
+$FlassMenssage = $message->getMessage();
+if(!empty($FlassMenssage["msg"])){
+//limpar
+}
+$message->cleanMessage();
 ?>
 
 <!DOCTYPE html>
@@ -40,10 +49,12 @@ require_once "db.php";
         </nav>
     </header>
 
-    <?php if(!empty($FlassMenssage["msg"])) {?>
+    <?php if(!empty($FlassMenssage["msg"])) {
+        ?>
         
         <div class="msg-container">
-            <p class="msg  <?php $FlassMenssage["type"] ?>"> Texto Mensagem</p>
+        
+            <p class="msg <?= $FlassMenssage["type"] ?>"> <?= $FlassMenssage["msg"] ?></p>
 
         </div>
     

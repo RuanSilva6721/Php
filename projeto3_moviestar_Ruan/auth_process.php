@@ -23,7 +23,25 @@ if($type ==="register"){
         if($password===$confirmpassword){
 
             if($userDAO->findByEmail($email)===false){
-                echo "nenhum usuário encontrado!";
+                 ///echo "nenhum usuário encontrado!";
+                 $user = new User();
+
+                 $userToken = $user->generateToken();
+                 $finalPassword = $user->generatePassword($password);
+                  
+                 $user->name =$name;
+                 $user->lastname =$lastname;
+                 $user->email =$email;
+                 $user->password =$finalPassword;
+                 $user->token = $userToken;
+                 
+
+                 $auth = true;
+                 $userDAO->create($user, $auth);
+
+
+
+               
             }else{
                 $message->setMessage("e-mail já está cadastrado", "error", "back");
             }

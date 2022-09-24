@@ -2,18 +2,23 @@
 require_once "global.php";
 require_once "db.php";
 require_once "models/Message.php";
+require_once "dao/UserDAO.php";
 
 $message = new Message($BASE_URL);
 
 $FlassMenssage = $message->getMessage();
-if(!empty($FlassMenssage["msg"])){
-//limpar
+if (!empty($FlassMenssage["msg"])) {
+    //limpar
 }
 $message->cleanMessage();
+$userDao = new UserDAO($conn, $BASE_URL);
+$userData = $userDao->verifyToken(false);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="pt0br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,8 +33,8 @@ $message->cleanMessage();
 <body>
     <header>
         <nav id="main-navbar" class="navbar navbar-expand-lg">
-            <a href="<?=$BASE_URL ?>" class="navbar-brand">
-                <img src="<?=$BASE_URL ?>/img/logo.svg" alt="MovieStar" id="logo">
+            <a href="<?= $BASE_URL ?>" class="navbar-brand">
+                <img src="<?= $BASE_URL ?>/img/logo.svg" alt="MovieStar" id="logo">
                 <span id="moviestar-title">MovieStar</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbar" aria-controls="navbar" aria-expanded="false" aria-label="tagglenavigation">
@@ -40,22 +45,31 @@ $message->cleanMessage();
                 <i class="fas fa-search"></i>
             </form>
             <div class="collapse navbar-collapse" id="navbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item"> <a href="<?=$BASE_URL?>auth.php" class="nav-link">Entrar/Cadastrar</a>
+            <ul class="navbar-nav">
+            <?php if($userData){ ?>
+                <li class="nav-item"> <a href="<?= $BASE_URL ?>newmovie.php" class="nav-link"><i class="far fa-plus-square"></i> Incluir Filme</a> </li>
+                <li class="nav-item"> <a href="<?= $BASE_URL ?>databoard.php" class="nav-link">Meus Filmes</a> </li>
+                <li class="nav-item"> <a href="<?= $BASE_URL ?>editprofile.php" class="nav-link bold"><?= $userData->name ?></a> </li>
+                <li class="nav-item"> <a href="<?= $BASE_URL ?>logout.php" class="nav-link">Sair</a> </li>
 
-                    </li>
+                <?php }else{ ?>    
+                
+                <li class="nav-item"> <a href="<?= $BASE_URL ?>auth.php" class="nav-link">Entrar/Cadastrar</a> </li>
+
+               
                 </ul>
+                <?php } ?>  
             </div>
         </nav>
     </header>
 
-    <?php if(!empty($FlassMenssage["msg"])) {
-        ?>
-        
+    <?php if (!empty($FlassMenssage["msg"])) {
+    ?>
+
         <div class="msg-container">
-        
+
             <p class="msg <?= $FlassMenssage["type"] ?>"> <?= $FlassMenssage["msg"] ?></p>
 
         </div>
-    
-        <?php } ?>
+
+    <?php } ?>

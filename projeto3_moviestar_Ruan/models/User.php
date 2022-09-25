@@ -15,7 +15,7 @@ class User{
         return $user->name  . " ". $user->lastname;
     }
     public function imageGenarateName(){
-        return bin2hex(random_bytes(50));
+        return bin2hex(random_bytes(50)).".jpg";
     }
     public function generateToken(){
         return bin2hex(random_bytes(50));

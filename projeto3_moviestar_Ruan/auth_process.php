@@ -22,42 +22,46 @@ if($type ==="register"){
     if($name && $lastname && $email && $password) {
         if($password===$confirmpassword){
 
-            if($userDAO->findByEmail($email)===false){
-                 ///echo "nenhum usuário encontrado!";
-                 $user = new User();
+        if($userDao->findByEmail($email) === false) {
 
-                 $userToken = $user->generateToken();
-                 $finalPassword = $user->generatePassword($password);
-                  
-                 $user->name =$name;
-                 $user->lastname =$lastname;
-                 $user->email =$email;
-                 $user->password =$finalPassword;
-                 $user->token = $userToken;
-                 
+          $user = new User();
 
-                 $auth = true;
-                 $userDAO->create($user, $auth);
+          $userToken = $user->generateToken();
+          $finalPassword = $user->generatePassword($password);
 
+          $user->name =$name;
+          $user->lastname =$lastname;
+          $user->email =$email;
+          $user->password =$finalPassword;
+          $user->token = $userToken;
 
+          $auth = true;
 
-               
-            }else{
-                $message->setMessage("e-mail já está cadastrado", "error", "back");
-            }
+          $userDao->create($user, $auth);
 
-        }else{
-             //mensagem de dados faltando
-        $message->setMessage("As senhas não são iguais", "error", "back");
+        } else {
+          
+          // Enviar uma msg de erro, usuário já existe
+          $message->setMessage("Usuário já cadastrado, tente outro e-mail.", "error", "back");
+
         }
-        }
-    else{
-        //mensagem de dados faltando
-        $message->setMessage("Por favor preencha todos os campos", "error", "back");
+
+      } else {
+
+        // Enviar uma msg de erro, de senhas não batem
+        $message->setMessage("As senhas não são iguais.", "error", "back");
+
+      }
+
+    } else {
+
+      // Enviar uma msg de erro, de dados faltantes
+      $message->setMessage("Por favor, preencha todos os campos.", "error", "back");
+
     }
 
+} else if($type === "login"){
 
-}else if($type=== "login"){
   $email = filter_input(INPUT_POST, "email");
   $password = filter_input(INPUT_POST, "password");
 
@@ -65,12 +69,10 @@ if($type ==="register"){
     $message->setMessage("Seja bem-vindo!", "success", "editprofile.php");
 
 
-  }else{
-    $message->setMessage("Senha ou Usuário incorretos!", "error", "back");
-  }
+}else{
+    $message->setMessage("Usuário e/ou senha incorretos.", "error", "back");
+}
 }else{
     $message->setMessage("Informações invalidas!", "error", "index.php");
 
 }
-
-?>

@@ -22,7 +22,7 @@ if($type ==="register"){
     if($name && $lastname && $email && $password) {
         if($password===$confirmpassword){
 
-        if($userDao->findByEmail($email) === false) {
+        if($userDAO->findByEmail($email) === false) {
 
           $user = new User();
 
@@ -37,7 +37,7 @@ if($type ==="register"){
 
           $auth = true;
 
-          $userDao->create($user, $auth);
+          $userDAO->create($user, $auth);
 
         } else {
           

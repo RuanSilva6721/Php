@@ -16,7 +16,7 @@ if($type ==="register"){
     $email = filter_input(INPUT_POST, "email");
     $password = filter_input(INPUT_POST, "password");
     $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
-
+    
      //print_r($email);exit;
     // Verificação de dados mínimos 
     if($name && $lastname && $email && $password) {
@@ -36,9 +36,9 @@ if($type ==="register"){
           $user->token = $userToken;
 
           $auth = true;
-
+         
           $userDAO->create($user, $auth);
-
+          
         } else {
           
           // Enviar uma msg de erro, usuário já existe

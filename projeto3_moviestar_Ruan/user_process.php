@@ -57,7 +57,18 @@ if($type === "update") {
 
       $imageName = $user->imageGenarateName();
 
-      imagejpeg($imageFile, "./img/users/" . $imageName, 100);
+
+      $caminho = $_SERVER['DOCUMENT_ROOT']."/projeto3_moviestar_Ruan/img/users/";
+      $_FILES["tmp_name"] = $imageName;
+
+      if (move_uploaded_file($_FILES["image"]["tmp_name"], $caminho)) {
+        echo "File is valid, and was successfully uploaded.\n";
+      } else {
+         echo "Upload failed";
+      }
+      
+      imagejpeg($imageFile, $caminho . $imageName, 100);
+     
 
       $userData->image = $imageName;
 

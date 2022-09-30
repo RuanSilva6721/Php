@@ -37,7 +37,7 @@ class UserDAO implements UserDAOInterface
     }
     public function create(User $user, $authUser = false)
     {
-
+      
         $stmt = $this->conn->prepare("INSERT INTO users (
 name, lastname, email, password, token
 ) VALUES (

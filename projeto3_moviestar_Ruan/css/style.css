@@ -153,6 +153,82 @@
 #edit-movie-form .card-btn {
   width: auto;
 }
+
+/* New Movie */
+.new-movie-container {
+  text-align: center;
+}
+
+#add-movie-form {
+  text-align: left;
+}
+
+.movie-image-container {
+  height: 400px;
+  min-width: 200px;
+  background-position: center;
+  background-size: cover;
+}
+
+.page-title:after {
+  content: "";
+  width: 300px;
+  border-bottom: 2px solid #F5C518;
+  display: block;
+  margin: 0 auto;
+  padding-top: 7px;
+}
+
+/* Movie */
+.movie-container {
+  text-align: center;
+}
+
+.movie-details {
+  margin: 25px 0;
+}
+
+.pipe {
+  border: 1px solid #333;
+  margin: 0 10px;
+}
+
+#reviews-title {
+  margin-bottom: 25px;
+}
+
+#review-form-container {
+  background-color: #333;
+  padding: 20px;
+}
+
+#review-form-container select,
+#review-form-container textarea {
+  width: 50%;
+}
+
+#reviews-container {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 4px solid #F5C518;
+}
+
+.review {
+  padding: 20px 0;
+  border-bottom: 1px solid #333;
+}
+
+.author-details-container {
+  padding-top: 20px;
+}
+
+.author-name a {
+  color: #F5C518;
+}
+
+.comment-title {
+  color: #999;
+}
 /* footer */
 
 #footer{

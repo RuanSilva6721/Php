@@ -8,6 +8,7 @@ require_once "dao/MovieDAO.php";
 
 $message = new Message($BASE_URL);
 $userDao = new UserDAO($conn, $BASE_URL);
+$movieDAO = new MovieDAO($conn, $BASE_URL);
 
 
 // Resgata o tipo do formulário
@@ -24,14 +25,16 @@ if($type === "create") {
    
 
     $movie = new Movie();
-
+  
     if(!empty($title) && !empty($description) && !empty($category)){
+      
         $movie->title = $title;
         $movie->description = $description;
         $movie->image = $trailer;
         $movie->trailer = $category;
         $movie->length = $length;
-
+        $movie->users_id = $userData->id;
+       
         if(isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {
     
             $image = $_FILES["image"];
@@ -56,18 +59,23 @@ if($type === "create") {
               $imageName = $movie->imageGenarateName();
         
         
-              $caminho = $_SERVER['DOCUMENT_ROOT']."/projeto3_moviestar_Ruan/img/movie/";
+              $caminho = $_SERVER['DOCUMENT_ROOT']."/projeto3_moviestar_Ruan/img/movies/";
               $_FILES["tmp_name"] = $imageName;
-        
-              if (move_uploaded_file($_FILES["image"]["tmp_name"], $caminho)) {
+
+              //print_r($_FILES["image"]["tmp_name"]);
+              //print_r($caminho);
+              //die();
+
+              /*if (move_uploaded_file($_FILES["image"]["tmp_name"], $caminho)) {
                 echo "File is valid, and was successfully uploaded.\n";
               } else {
                  echo "Upload failed";
-              }
-              
+              }*/
+
               imagejpeg($imageFile, $caminho . $imageName, 100);
-             
-        
+              
+
+              
               $movie->image = $imageName;
               $movieDAO->create($movie);
             } else {

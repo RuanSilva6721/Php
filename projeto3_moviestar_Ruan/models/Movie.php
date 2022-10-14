@@ -12,7 +12,7 @@ class Movie{
 
 
     public function imageGenarateName(){
-        return bin2hex(random_bytes(60). "jpg");
+        return bin2hex(random_bytes(50).".jpg");
     }
 
 
